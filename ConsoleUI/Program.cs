@@ -15,7 +15,7 @@ namespace ConsoleUI
             Console.WriteLine();
             Console.WriteLine("*****Add****");
             
-            carManager.Add(new Car() { Id = 7, Description = "rreqrqrr" });
+            carManager.Add(new Car { Id = 7, Description = "rreqrqrr" });
            
             Console.WriteLine();
             Console.WriteLine("*****Get All****");
@@ -37,7 +37,7 @@ namespace ConsoleUI
            
             Console.WriteLine();
             Console.WriteLine("*****Update****");
-            carManager.Update(new Car() { Id = 7, Description = "Performance car" });
+            carManager.Update(new Car { Id = 7, Description = "Performance car" });
 
             Console.WriteLine();
             Console.WriteLine("*****Get All****");
