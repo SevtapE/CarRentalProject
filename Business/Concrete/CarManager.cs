@@ -38,10 +38,10 @@ namespace Business.Concrete
           
         }
 
-        public Car GetById(int id)
-        {
-            return _carDal.GetById(id);
-        }
+        //public Car GetById(int id)
+        //{
+        //    return _carDal.GetById(id);
+        //}
 
         public void Update(Car car)
         {
