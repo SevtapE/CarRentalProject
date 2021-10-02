@@ -16,13 +16,16 @@ namespace ConsoleUI
 
             //EFAdd();
 
-            //EFTests();
+            EFTests();
 
-          
-                CarManager carManager = new CarManager(new EfCarDal());
-                carManager.Add(new Car { Id = 4, BrandId = 2, ColorId = 1, ModelYear = "1985", DailyPrice = 2.35M, Description = "h" });
-            
+            //NewBusinessRule();
 
+        }
+
+        private static void NewBusinessRule()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Add(new Car { Id = 4, BrandId = 2, ColorId = 1, ModelYear = "1985", DailyPrice = 2.35M, Description = "h" });
         }
 
         private static void EFTests()
