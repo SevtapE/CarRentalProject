@@ -16,9 +16,20 @@ namespace ConsoleUI
 
             //EFAdd();
 
+            //EFTests();
+
+          
+                CarManager carManager = new CarManager(new EfCarDal());
+                carManager.Add(new Car { Id = 4, BrandId = 2, ColorId = 1, ModelYear = "1985", DailyPrice = 2.35M, Description = "h" });
+            
+
+        }
+
+        private static void EFTests()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             List<Car> cars = carManager.GetAll();
-           
+
             foreach (var car in cars)
             {
                 ShowCar(car);
@@ -37,7 +48,6 @@ namespace ConsoleUI
             {
                 ShowCar(car);
             }
-
         }
 
         private static void ShowCar(Car car)

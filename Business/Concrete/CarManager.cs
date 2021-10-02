@@ -20,8 +20,15 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
-            Console.WriteLine("Added");
+            if ((car.Description.Length >= 2) && (car.DailyPrice > 0))
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Added");
+            }
+            else
+            {
+                Console.WriteLine("The car could not get added to the cars. Make sure the following conditions are fit.\n *The description must have at least two characters.\n *The daily price must be greater than 0.");
+            }
 
         }
 
