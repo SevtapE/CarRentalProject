@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           // modelBuilder.Entity<User>().ToTable ( "Users" );
+            modelBuilder.Entity<User>().ToTable ( "Users" );
             modelBuilder.Entity<Customer>().ToTable ("Customers" );
 
         }

@@ -52,24 +52,40 @@ namespace ConsoleUI
             //UserUpdateTest();
             //UserDeleteTest();
 
-            Customer customer = new Customer { FirstName = "Ammy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal", CompanyName = "Verifyings" };
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            customerManager.Add(customer);
-            Console.WriteLine(customerManager.Add(customer).Message);
+            // CustomerAddTest();
+
+    
+            // UserAddTest();
+            // Console.WriteLine(customerManager.Add(customer).Message);
 
             //rentalManager.check();
         }
 
+        private static void UserAddTest()
+        {
+            User user = new User { FirstName = "Bob", LastName = "Robinson", Email = "bobrobyy@sng.ss", Password = "ehs4442l" };
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(user);
+        }
+
+
+        private static void CustomerAddTest()
+        {
+            Customer customer = new Customer { FirstName = "Lesly", LastName = "Robinson", Email = "resy@sng.ss", Password = "ehsffl", CompanyName = "Verifyings" };
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(customer);
+        }
+
         private static void UserDeleteTest()
         {
-            User user = new User { Id = 1002, FirstName = "Cessy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal" };
+            User user = new User { UserId = 1002, FirstName = "Cessy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal" };
             UserManager userManager = new UserManager(new EfUserDal());
             userManager.Delete(user);
         }
 
         private static void UserUpdateTest()
         {
-            User user = new User { Id = 1002, FirstName = "Cessy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal" };
+            User user = new User { UserId = 1002, FirstName = "Cessy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal" };
             UserManager userManager = new UserManager(new EfUserDal());
             userManager.Update(user);
         }
