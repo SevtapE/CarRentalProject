@@ -13,10 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarRentalContext>, IRentalDal
     {
-        public void CheckCarForRent(Car car)
-        {
-            throw new NotImplementedException();
-        }
+ 
 
         public List<CarRentDetailDto> GetCarRentDetailByCar(int carId)
         {
@@ -24,24 +21,6 @@ namespace DataAccess.Concrete.EntityFramework
             return resultlist.Where(c => c.CarId == carId).ToList();
    
         }
-
-        //public void CheckCarForRent(Car car)
-        //{
-        //    var result = GetRentalDetails();
-        //    foreach (var item in result)
-        //    {
-        //        if (item.CarId == car.Id)
-        //        {
-        //            Console.WriteLine(item.CarId + "/" + item.RentalId + " / " + item.ReturnDate);
-        //        }
-
-        //    }
-        //}
-
-
-
-
-
 
 
         public List<CarRentDetailDto> GetRentalDetails()

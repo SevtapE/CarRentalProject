@@ -13,6 +13,6 @@ namespace DataAccess.Abstract
     {
         List<CarRentDetailDto> GetRentalDetails();
         List<CarRentDetailDto> GetCarRentDetailByCar(int carId);
-        void CheckCarForRent(Car car);
+     
     }
 }

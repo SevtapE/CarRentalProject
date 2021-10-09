@@ -13,8 +13,12 @@ namespace Business.Abstract
     {
         IDataResult<List<CarRentDetailDto>> GetCarRentDetail();
         IDataResult<List<CarRentDetailDto>> GetCarRentDetail(int carId);
-       
-      //  void check(Car car);
+
+        IResult IsCarEverRented(int carId);
+        IResult IsCarReturned(int carId);
+        IResult IsAvailableForRent(int carId);
+
+     
 
         IDataResult<Rental> GetById(int id);
 

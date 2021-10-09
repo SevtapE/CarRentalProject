@@ -40,7 +40,7 @@ namespace ConsoleUI
             //}
 
             //RentalUpdateTest();
-            // RentalAddTest();
+             RentalAddTest();
 
             //RentalDeleteTest();
             // CarRentDetailTest();
@@ -59,6 +59,14 @@ namespace ConsoleUI
             // Console.WriteLine(customerManager.Add(customer).Message);
 
             //rentalManager.check();
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental { CarId = 1005, CustomerId = 3, RentDate = new DateTime(2021, 10, 6) };
+            var result=rentalManager.Add(rental);
+            Console.WriteLine(result.Message);
         }
 
         private static void UserAddTest()
@@ -130,12 +138,6 @@ namespace ConsoleUI
             Console.WriteLine(rentalManager.Delete(rental).Message);
         }
 
-        private static void RentalAddTest()
-        {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            Rental rental = new Rental { CarId = 1005, CustomerId = 3, RentDate = new DateTime(2021, 10, 6) };
-            rentalManager.Add(rental);
-        }
 
         private static void RentalUpdateTest()
         {

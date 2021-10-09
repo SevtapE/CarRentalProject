@@ -28,17 +28,20 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-           
-          
+            var result = IsAvailableForRent(rental.CarId);
+           if (result.Success)
+            {
                 _rentalDal.Add(rental);
                 return new SuccessResult(Messages.RentalAdded);
+            }
+            else
+            {
+                return new ErrorResult(result.Message);
+            }
     
         }
 
-        //public void check(Car car)
-        //{
-
-        //}
+   
 
         public IResult Delete(Rental rental)
         {
@@ -67,9 +70,41 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarRentDetailDto>>(_rentalDal.GetCarRentDetailByCar(carId));
         }
-        //public void check() {
-        //    _rentalDal.CheckCarForRent(_car);
-        //}
+
+        public IResult IsAvailableForRent(int carId)
+        {
+          if(IsCarEverRented(carId).Success)
+            {
+                if (IsCarReturned(carId).Success)
+                {
+                    return new SuccessResult(Messages.RentalAdded);
+                }
+                return new ErrorResult(Messages.CarNotAvailable);
+            }
+            return new SuccessResult(Messages.RentalAdded);
+        }
+
+       public IResult IsCarEverRented(int carId)
+        {
+           
+            if (_rentalDal.GetAll(r => r.CarId == carId).Any())
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+
+       public IResult IsCarReturned(int carId)
+        {
+            if(_rentalDal.GetAll(r => (r.CarId == carId) && (r.ReturnDate == null)).Any())
+            {
+                return new ErrorResult();
+            }
+           
+            return new SuccessResult();
+        }
+
+     
 
 
 

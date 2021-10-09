@@ -42,5 +42,6 @@ namespace Business.Constants
         public static string RentalUpdated = "The rental is updated";
 
         public static string RentalError = "There was an error.";
+        public static string CarNotAvailable = "Another customer rented the car.";
     }
 }
