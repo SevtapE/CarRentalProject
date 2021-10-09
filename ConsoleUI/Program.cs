@@ -28,6 +28,109 @@ namespace ConsoleUI
             //BrandOperationsTest();
 
             //ColorOperationsTest();
+            // ResultTest();
+
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
+            //Color color = new Color { Name = "Blue" };
+            //colorManager.Add(color);
+            //var result= colorManager.GetAll().Data;
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.Id+"/"+item.Name);
+            //}
+
+            //RentalUpdateTest();
+            // RentalAddTest();
+
+            //RentalDeleteTest();
+            // CarRentDetailTest();
+
+            //CarRentDetailByCarTest();
+
+            // UserTest();
+
+            //UserUpdateTest();
+            //UserDeleteTest();
+
+            Customer customer = new Customer { FirstName = "Ammy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal", CompanyName = "Verifyings" };
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(customer);
+            Console.WriteLine(customerManager.Add(customer).Message);
+
+            //rentalManager.check();
+        }
+
+        private static void UserDeleteTest()
+        {
+            User user = new User { Id = 1002, FirstName = "Cessy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal" };
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Delete(user);
+        }
+
+        private static void UserUpdateTest()
+        {
+            User user = new User { Id = 1002, FirstName = "Cessy", LastName = "Rob", Email = "cessy@sng.ss", Password = "ehskal" };
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Update(user);
+        }
+
+        private static void UserTest()
+        {
+            User user = new User { FirstName = "Cessy", LastName = "Rob", Email = "cessy@jds.ss", Password = "ehskal" };
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(user);
+
+        }
+
+        private static void CarRentDetailByCarTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+
+            var resultlist = rentalManager.GetCarRentDetail(1005).Data;
+            foreach (var item in resultlist)
+            {
+                Console.WriteLine(item.CarId + "/" + item.RentalId + "/" + item.ReturnDate);
+
+            }
+        }
+
+        private static void CarRentDetailTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            var result = rentalManager.GetCarRentDetail();
+            foreach (var item in result.Data)
+            {
+                Console.WriteLine(item.CarId + "/" + item.ReturnDate);
+            }
+        }
+
+        private static void RentalDeleteTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental { Id = 8, CarId = 1005, CustomerId = 3, RentDate = new DateTime(2021, 10, 6), ReturnDate = new DateTime(2021, 10, 8) };
+
+            Console.WriteLine(rentalManager.Delete(rental).Message);
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental { CarId = 1005, CustomerId = 3, RentDate = new DateTime(2021, 10, 6) };
+            rentalManager.Add(rental);
+        }
+
+        private static void RentalUpdateTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental { Id = 8, CarId = 1005, CustomerId = 3, RentDate = new DateTime(2021, 10, 6), ReturnDate = new DateTime(2021, 10, 8) };
+
+            Console.WriteLine(rentalManager.Update(rental).Message);
+        }
+
+        private static void ResultTest()
+        {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             Console.WriteLine("**Get All**");
             var result = colorManager.GetAll();

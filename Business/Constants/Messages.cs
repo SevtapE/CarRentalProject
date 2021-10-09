@@ -28,5 +28,19 @@ namespace Business.Constants
         public static string ColorError = "There was an error.";
 
         public static string ColorGetAll = "The colors are listed.";
+
+        public static string CustomerAdded = "The customer is added";
+        public static string CustomerDeleted = "The customer is deleted";
+        public static string CustomerUpdated = "The customer is updated";
+
+        public static string UserAdded = "The user is added";
+        public static string UserDeleted = "The user is deleted";
+        public static string UserUpdated = "The user is updated";
+
+        public static string RentalAdded = "The rental is added";
+        public static string RentalDeleted = "The rental is deleted";
+        public static string RentalUpdated = "The rental is updated";
+
+        public static string RentalError = "There was an error.";
     }
 }
