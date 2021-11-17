@@ -4,7 +4,10 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
+using System.Text;
 using System.Collections.Generic;
+using System.IO;
+using Core.Utilities.FileManipulate;
 
 namespace ConsoleUI
 {
@@ -12,6 +15,71 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //FileManipulator fileManipulator = new FileManipulator();
+            //string eklenecek = @"C:\Users\user\Desktop\D.jpg";
+            //var info=fileManipulator.Kopyala(eklenecek);
+            //Console.WriteLine($"Dosya Adi: {info.Name} Dosya Path: {info.FullName} Oluşturulma Zamanı: {info.CreationTime}");
+
+
+            //CarManager carManager = new CarManager(new EfCarDal());
+            //var result = carManager.GetCarDetail();
+
+            //foreach (var d in result.Data)
+            //{
+            //    Console.WriteLine(d.CarId+d.BrandName+d.ColorName);
+            //}
+
+
+
+            //Bir resmi seç
+
+            CarImageManager carImageManager = new CarImageManager(new EfCarImageDal(),new FileManipulator());
+            //Console.WriteLine(( carImageManager.Add(new CarImage { CarId = 1007 ,ImagePath= @"C:\Users\user\Desktop\D.jpg"} )).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 1007, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 1007, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 1007, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 1007, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 1007, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 1007, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //Console.WriteLine((carImageManager.Add(new CarImage { CarId = 2, ImagePath = @"C:\Users\user\Desktop\D.jpg" })).Message);
+            //  carImageManager.Update(new CarImage { Id= 2013,CarId = 1007 ,ImagePath= @"C:\Users\user\Desktop\D.jpg"} );
+
+            var carImages = carImageManager.GetByCarId(1);
+            foreach (var image in carImages.Data)
+            {
+                Console.WriteLine(image.ImagePath + image.Date);
+            }
+
+            var carImages2 = carImageManager.GetByCarId(2);
+            foreach (var image in carImages2.Data)
+            {
+                Console.WriteLine(image.ImagePath + image.Date);
+            }
+
+            //string rootPath = @"C:\Users\user\Desktop\D.jpg";
+            //string _destination = @"C:\Users\user\source\repos\CarRental\Business\Images\CarImages\";
+            //string newName = Guid.NewGuid().ToString("N");
+            //File.Copy(rootPath, $"{_destination}{newName}.jpg");
+
+
+            //FileManipulator fileManipulator = new FileManipulator();
+            //fileManipulator.Ekle();
+
+
+            //  FileManager fileManager = new FileManager();
+            //  var info = new FileInfo(@"‪‪‪C:\Users\user\Desktop\DefaultImage.jpg");
+            //fileManager.Upload(info);
+            // File.GetCreationTime (@"‪C:\Users\user\Desktop\D.jpg");
+            //Console.WriteLine( fileInfo.FullName);
+            //Console.WriteLine(fileInfo.DirectoryName);
+            //DeleteTest(fileManager);
+
+            // GetAllTest(fileManager);
+
+            //  CarImage carImage = new CarImage { CarId = 3, ImagePath = "hgjhgw", Date = DateTime.Now };
+            //  CarImageManager carImageManager = new CarImageManager(new EfCarImageDal());
+            //  carImageManager.Add(carImage);
+
             //InMemoryTests();
 
             //EFAdd();
@@ -40,7 +108,7 @@ namespace ConsoleUI
             //}
 
             //RentalUpdateTest();
-             RentalAddTest();
+            // RentalAddTest();
 
             //RentalDeleteTest();
             // CarRentDetailTest();
@@ -54,12 +122,27 @@ namespace ConsoleUI
 
             // CustomerAddTest();
 
-    
+
             // UserAddTest();
             // Console.WriteLine(customerManager.Add(customer).Message);
 
             //rentalManager.check();
         }
+
+        //private static void DeleteTest(FileManager fileManager)
+        //{
+        //    fileManager.Delete(new FileInfo(@"C:\Users\user\source\repos\CarRental\Business\Images\CarImages\a.jpg"));
+        //}
+
+        //private static void GetAllTest(FileManager fileManager)
+        //{
+        //    var resimler = fileManager.GetAll();
+        //    foreach (var resim in resimler.Data)
+        //    {
+        //        Console.WriteLine(resim);
+
+        //    }
+        //}
 
         private static void RentalAddTest()
         {

@@ -43,5 +43,9 @@ namespace Business.Constants
 
         public static string RentalError = "There was an error.";
         public static string CarNotAvailable = "Another customer rented the car.";
+        public static string ImageAdded="The car image is added to the database.";
+        public static string ImageDeleted="The car image is deleted.";
+        public static string ImageUpdated = "The car image is updated.";
+        public static string CarImageCountExceeded = "Each car can have only 5 images.";
     }
 }

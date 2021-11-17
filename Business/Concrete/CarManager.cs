@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.Validations.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
@@ -24,19 +25,10 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            //if (car.Description.Length <= 2)
-            //{
-            //    return new ErrorResult(Messages.CarInvalidName);
-            //}
-            //if (car.DailyPrice <= 0)
-            //{
-            //    return new ErrorResult(Messages.CarInvalidPrice);
-
-            //}
-            ValidationTool.Validate(new CarValidator(), car);
+       
                 _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
@@ -67,6 +59,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
+        public IDataResult<List<CarDetailDto>> GetCarDetailByCarId(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.CarId==carId));
+        }
+
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
@@ -84,7 +81,7 @@ namespace Business.Concrete
 
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
-            // return new SuccessResult("Updated");
+          
 
 
         }

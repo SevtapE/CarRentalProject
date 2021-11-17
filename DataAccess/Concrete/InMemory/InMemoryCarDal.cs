@@ -60,6 +60,11 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         //public Car GetById(int id)
         //{
         //    return _cars.SingleOrDefault(c => c.Id == id);
@@ -75,9 +80,9 @@ namespace DataAccess.Concrete.InMemory
             carToUpdate.DailyPrice = car.DailyPrice;
         }
 
-        List<CarDetailDto> ICarDal.GetCarDetails()
-        {
-            throw new NotImplementedException();
-        }
+        //List<CarDetailDto> ICarDal.GetCarDetails()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
