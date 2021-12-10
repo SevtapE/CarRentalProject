@@ -47,5 +47,6 @@ namespace Business.Constants
         public static string ImageDeleted="The car image is deleted.";
         public static string ImageUpdated = "The car image is updated.";
         public static string CarImageCountExceeded = "Each car can have only 5 images.";
+        public static string UserAlreadyExists="The user is already exists";
     }
 }
