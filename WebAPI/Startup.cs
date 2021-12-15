@@ -77,7 +77,7 @@ namespace WebAPI
                 RequestPath = new PathString("/CarImages")
             }
             );
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,6 +1,7 @@
 ﻿using Core.Entities.Concrete;
 using Core.Entities.DTOs;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Business.Abstract
 {
    public interface IAuthService
     {
-        IResult Register(UserForRegisterDto userForRegisterDto);
-        IResult Login(UserForLoginDto userForLoginDto);
-        IDataResult<bool> UserExists(string email);
+        IDataResult<User> Register(UserForRegisterDto userForRegisterDto);
+        IDataResult<User> Login(UserForLoginDto userForLoginDto);
+        IResult UserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(User user);
     }
 }

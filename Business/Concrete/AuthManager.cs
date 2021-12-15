@@ -4,6 +4,8 @@ using Core.Entities.Concrete;
 using Core.Entities.DTOs;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
+using Core.Utilities.Security;
+using Core.Utilities.Security.Hashing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,30 +17,69 @@ namespace Business.Concrete
     public class AuthManager : IAuthService
     {
         IUserService _userService;
+        ITokenHelper _tokenHelper;
 
-        public AuthManager(IUserService userService)
+        public AuthManager(IUserService userService,ITokenHelper tokenHelper)
         {
             _userService = userService;
+            _tokenHelper = tokenHelper;
         }
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            throw new NotImplementedException();
+            var claims = _userService.GetClaims(user).Data;
+            var accessToken=_tokenHelper.CreateToken(user,claims);
+            return new SuccessDataResult<AccessToken>(accessToken,Messages.AccessTokenCreated);
         }
 
-        public IResult Login(UserForLoginDto userForLoginDto)
+        public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            throw new NotImplementedException();
+            var checkForLogin = _userService.GetByMail(userForLoginDto.Email);
+            if (!checkForLogin.Success)
+            {
+                return new ErrorDataResult<User>(Messages.UserNotFound);
+
+            }
+           if(! HashingHelper.VerifyPasswordHash(userForLoginDto.Password, checkForLogin.Data.PasswordHash, checkForLogin.Data.PasswordSalt))
+            {
+                return new ErrorDataResult<User>(checkForLogin.Data, Messages.PasswordError);
+            }
+
+            return new SuccessDataResult<User>(checkForLogin.Data, Messages.SuccessfulLogin);
         }
 
-        public IResult Register(UserForRegisterDto userForRegisterDto)
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
         {
-            throw new NotImplementedException();
+            var checkForRegister = _userService.GetByMail(userForRegisterDto.Email);
+            if (checkForRegister.Data!=null)
+            {
+                return new ErrorDataResult<User>(checkForRegister.Data, Messages.UserAlreadyExists);
+            }
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password,out passwordHash,out passwordSalt);
+
+            var user = new User { 
+                 FirstName=userForRegisterDto.FirstName,
+                 LastName=userForRegisterDto.LastName,
+                 Email=userForRegisterDto.Email,
+                 PasswordHash=passwordHash,
+                 PasswordSalt=passwordSalt,
+                  Status=true
+            
+            };
+            _userService.Add(user);
+            return new SuccessDataResult<User>(user, Messages.UserRegistered);
+
+               
         }
 
-        public IDataResult<bool> UserExists(string email)
+        public IResult UserExists(string email)
         {
-            throw new NotImplementedException();
+           if(_userService.GetByMail(email).Data != null)
+            {
+                return new SuccessResult(Messages.UserAlreadyExists);
+            }
+            return new ErrorResult(Messages.NotExists);
            
         }
     }
