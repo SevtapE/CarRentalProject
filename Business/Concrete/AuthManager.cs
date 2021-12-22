@@ -35,7 +35,7 @@ namespace Business.Concrete
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var checkForLogin = _userService.GetByMail(userForLoginDto.Email);
-            if (!checkForLogin.Success)
+            if (checkForLogin.Data==null)
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
 

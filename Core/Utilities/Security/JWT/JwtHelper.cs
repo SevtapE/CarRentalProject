@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Utilities.Security.Encyption;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -21,15 +22,15 @@ namespace Core.Utilities.Security.JWT
         public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            _tokenOptions= configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            _tokenOptions= Configuration.GetSection("TokenOptions").Get<TokenOptions>();
            
         }
 
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes( _tokenOptions.SecurityKey));
-            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
+            var securityKey = SecurityKeyHelper.CreateSecurityKey( _tokenOptions.SecurityKey);
+            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
             
            

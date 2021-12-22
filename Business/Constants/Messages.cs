@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,5 +56,6 @@ namespace Business.Constants
         public static string PasswordError= "The password is incorrect";
         public static string SuccessfulLogin="Login is successful";
         public static string AccessTokenCreated="Access Token is created";
+        public static string AuthorizationDenied= "Authorization Denied";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
@@ -27,6 +28,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserAdded);
         }
 
+        [SecuredOperation("user.getall,admin")]
         public IDataResult<List<User>> GetAll()
         {
            var result=  _userDal.GetAll();
@@ -44,6 +46,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
+        [SecuredOperation("user.update,admin")]
         public IResult Update(User user)
         {
             _userDal.Update(user);
