@@ -16,7 +16,7 @@ namespace Core.Aspects.Autofac.Validation
 
         public ValidationAspect(Type validatorType)
         {
-            if (!validatorType.IsAssignableFrom(typeof(IValidator)))
+            if (!typeof(IValidator).IsAssignableFrom(validatorType))
                 {
                 throw new Exception("It is not a validator.");
             }
@@ -28,7 +28,7 @@ namespace Core.Aspects.Autofac.Validation
           
           var validator=(IValidator)Activator.CreateInstance(_validatorType);
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
-            var entitiesOfMethod = invocation.Method.GetParameters();
+            var entitiesOfMethod = invocation.Arguments.Where(t => t.GetType() == entityType);
 
             foreach (var entity in entitiesOfMethod)
             {
