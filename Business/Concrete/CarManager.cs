@@ -2,6 +2,8 @@
 using Business.Constants;
 using Business.Validations.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Utilities.Results.Abstract;
@@ -46,6 +48,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+       // [PerformanceAspect(2)]
         public IDataResult<List<Car>> GetAll()
         {
 
@@ -79,6 +82,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
 
+        [TransactionScopeAspect]
+        public IResult TransactionalAddTest(Car car)
+        {
+            Add(car);
+            if (car.DailyPrice <= 1)
+            {
+                throw new Exception(" ");
+            }
+           Update(car);
+            return null;
+        }
 
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
