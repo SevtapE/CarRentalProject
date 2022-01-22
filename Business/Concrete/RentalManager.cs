@@ -66,9 +66,15 @@ namespace Business.Concrete
 
 
 
-        public IDataResult<List<CarRentDetailDto>> GetCarRentDetail(int carId)
+
+        public IDataResult<List<CarRentDetailDto>> GetCarRentDetailById(int carId)
         {
             return new SuccessDataResult<List<CarRentDetailDto>>(_rentalDal.GetCarRentDetailByCar(carId));
+        }
+
+        public IDataResult<List<CarRentFullDto>> GetCarRentFull()
+        {
+            return new SuccessDataResult<List<CarRentFullDto>>(_rentalDal.GetCarRentFull());
         }
 
         public IResult IsAvailableForRent(int carId)

@@ -12,7 +12,8 @@ namespace Business.Abstract
    public interface IRentalService
     {
         IDataResult<List<CarRentDetailDto>> GetCarRentDetail();
-        IDataResult<List<CarRentDetailDto>> GetCarRentDetail(int carId);
+        IDataResult<List<CarRentFullDto>> GetCarRentFull();
+        IDataResult<List<CarRentDetailDto>> GetCarRentDetailById(int carId);
 
         IResult IsCarEverRented(int carId);
         IResult IsCarReturned(int carId);

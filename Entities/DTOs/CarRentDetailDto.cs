@@ -10,7 +10,7 @@ namespace Entities.DTOs
     public class CarRentDetailDto :IDto
     {
         public int CarId { get; set; }
-        public int RentalId { get; set; }
+        public Nullable<int> RentalId { get; set; }
         public Nullable<DateTime> ReturnDate { get; set; }
     }
 }
