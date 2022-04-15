@@ -13,8 +13,11 @@ namespace Core.Utilities.FileManipulate
         //destination can change - I'm gonna change how it works
         // string _destinationFolder = @"C:\Users\user\source\repos\CarRental\Business\Images\CarImages\";
 
-        
-        string _destinationFolder = Path.GetFullPath( @"..\Business\Images\CarImages\");
+        ///Images/CarImages/
+
+      //  string _destinationFolder = Path.GetFullPath( @"..\Business\Images\CarImages\");
+
+        string _destinationFolder = "~/Images/CarImages/";
 
         string myExtension = ".jpg";
         public FileInfo Add(string eklenecekDosya)

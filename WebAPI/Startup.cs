@@ -85,14 +85,14 @@ namespace WebAPI
 
             app.UseRouting();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions()
-            {
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
               
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).ToString(), @"Business/Images/CarImages")),
-                RequestPath = new PathString("/CarImages")
-            }
-            );
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).ToString(), @"Business/Images/CarImages")),
+            //    RequestPath = new PathString("/CarImages")
+            //}
+            //);
             app.UseAuthentication();
             app.UseAuthorization();
 

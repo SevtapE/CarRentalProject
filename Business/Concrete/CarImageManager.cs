@@ -64,7 +64,7 @@ namespace Business.Concrete
             var result = CheckIfTheCarHasAnyImage(carId);
             if (!result.Success)
             {
-                return new SuccessDataResult<List<CarImage>>(new List<CarImage>{ new CarImage { ImagePath = @"C:\Users\user\source\repos\CarRental\Business\Images\CarImages\DefaultImage.jpg" } });
+                return new SuccessDataResult<List<CarImage>>(new List<CarImage>{ new CarImage { ImagePath = @"/Images/CarImages/DefaultImage.jpg" } });
             }
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c=>c.CarId==carId));
 

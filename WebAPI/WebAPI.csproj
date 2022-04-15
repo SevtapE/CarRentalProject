@@ -5,6 +5,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\CarImages\39dc295f3c634353ad24e4d042ea08da.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\3e524168fe004377a714d4e1dd8ca8c8.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\531b18b637314aa68428757eba80ed17.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\864bc9ee1b1241ebbb28ca0047566b77.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\b2f0a5a78c4a431ba86170375817acae.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\bdeb2d0dda8d4be7a089341271277d23.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\c494f092692a47e2b87c513b25d2d9b9.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\d11591ca5f2749f0be57fac99abe1b5a.jpg" />
+    <Content Remove="wwwroot\Images\CarImages\e1ff06582e3c4cb4b10cd20adb166feb.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\CarImages\39dc295f3c634353ad24e4d042ea08da.jpg" />
+    <None Include="wwwroot\Images\CarImages\3e524168fe004377a714d4e1dd8ca8c8.jpg" />
+    <None Include="wwwroot\Images\CarImages\531b18b637314aa68428757eba80ed17.jpg" />
+    <None Include="wwwroot\Images\CarImages\864bc9ee1b1241ebbb28ca0047566b77.jpg" />
+    <None Include="wwwroot\Images\CarImages\b2f0a5a78c4a431ba86170375817acae.jpg" />
+    <None Include="wwwroot\Images\CarImages\bdeb2d0dda8d4be7a089341271277d23.jpg" />
+    <None Include="wwwroot\Images\CarImages\c494f092692a47e2b87c513b25d2d9b9.jpg" />
+    <None Include="wwwroot\Images\CarImages\d11591ca5f2749f0be57fac99abe1b5a.jpg" />
+    <None Include="wwwroot\Images\CarImages\e1ff06582e3c4cb4b10cd20adb166feb.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.13" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -15,10 +39,6 @@
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
